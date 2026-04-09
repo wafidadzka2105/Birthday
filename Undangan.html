@@ -20,7 +20,7 @@
 
 <div id="splash" class="fixed inset-0 bg-pink-200 flex flex-col items-center justify-center z-[9999]">
   <h1 class="text-3xl text-pink-600 font-bold animate-pulse">
-    💖 Loading Sayang...
+    💖 Loading Cantikk...
   </h1>
   <p class="text-sm text-gray-600 mt-2">Tunggu bentar ya 😭💕</p>
 </div>
@@ -49,7 +49,7 @@
     <button id="tidakBtn"
       onmouseover="kabur()"
       onclick="kabur()"
-      class="bg-gray-300 px-6 py-2 rounded-full shadow absolute">
+      class="bg-gray-300 px-6 py-2 rounded-full shadow absolute transition-all duration-300">
       Tidak 😢
     </button>
 
@@ -76,32 +76,29 @@ let scale = 1;
 
 function kabur(){
   const btn = document.getElementById("tidakBtn");
+  const parent = btn.parentElement;
 
-  // makin kecil
-  scale -= 0.1;
-  if(scale < 0.3) scale = 0.3;
+  const parentRect = parent.getBoundingClientRect();
 
-  // posisi random / pojok
-  const randomX = Math.random() * (window.innerWidth - 100);
-  const randomY = Math.random() * (window.innerHeight - 50);
+  // ukuran tombol
+  const btnWidth = btn.offsetWidth;
+  const btnHeight = btn.offsetHeight;
 
-  // kadang lompat ke pojok
-  if(Math.random() > 0.6){
-    const positions = [
-      [0,0],
-      [window.innerWidth-100,0],
-      [0,window.innerHeight-50],
-      [window.innerWidth-100,window.innerHeight-50]
-    ];
-    const pos = positions[Math.floor(Math.random()*4)];
-    btn.style.left = pos[0] + "px";
-    btn.style.top = pos[1] + "px";
-  } else {
-    btn.style.left = randomX + "px";
-    btn.style.top = randomY + "px";
-  }
+  // batas gerak dalam container
+  const maxX = parentRect.width - btnWidth;
+  const maxY = parentRect.height - btnHeight;
 
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  // makin kecil dikit biar lucu
+  scale -= 0.05;
+  if(scale < 0.5) scale = 0.5;
+
+  btn.style.left = randomX + "px";
+  btn.style.top = randomY + "px";
   btn.style.transform = `scale(${scale})`;
+
 }
 
 
@@ -123,7 +120,7 @@ function jawabIya(){
 
   // alert romantis
   setTimeout(()=>{
-    alert("YEAYYY 💖 Aku tunggu ya sayang 😭💕");
+    alert("YEAYYY 💖 Aku tunggu ya Cantikk 😭💕");
   },300);
 
   // pindah halaman

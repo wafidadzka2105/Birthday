@@ -18,7 +18,7 @@
 
 <div id="splash" class="fixed inset-0 bg-pink-200 flex flex-col items-center justify-center z-[9999]">
   <h1 class="text-3xl text-pink-600 font-bold animate-pulse">
-    💖 Loading Sayang...
+    💖 Loading Cantikk...
   </h1>
   <p class="text-sm text-gray-600 mt-2">Tunggu bentar ya 😭💕</p>
 </div>
@@ -39,14 +39,24 @@
   </div>
 
   <p class="mt-4 text-pink-500 font-semibold">
-    ✨ Pakai outfit terbaikmu ya 💕
-  </p>
+  ✨ Pakai outfit terbaikmu ya 💕
+</p>
 
-  <a href="Home.html" class="block mt-6 text-pink-500 font-semibold hover:underline">
+<!-- BUTTON AREA -->
+<div class="flex justify-between items-center mt-8">
+
+  <a href="Home.html"
+     class="px-4 py-2 bg-gray-200 rounded-xl text-gray-700 font-semibold hover:bg-gray-300 transition">
     ← Kembali
   </a>
 
+  <a href="Rundown.html"
+     class="px-4 py-2 bg-pink-500 text-white rounded-xl font-semibold hover:bg-pink-600 transition">
+    Lanjutkan →
+  </a>
+
 </div>
+
 
 <script src="Script.js"></script>
 <script src="App.js"></script>
@@ -95,19 +105,6 @@ if(music){
 }
 </script>
 
-<script>
-// ==========================
-// ⏭️ AUTO NEXT KE RUNDOWN
-// ==========================
-setTimeout(()=>{
-  document.body.classList.add("opacity-0","scale-95");
-
-  setTimeout(()=>{
-    window.location.href = "Rundown.html";
-  },300);
-
-},3000); // delay 3 detik
-</script>
 
 </body>
 </html>

@@ -20,7 +20,7 @@
 
 <div id="splash" class="fixed inset-0 bg-pink-200 flex flex-col items-center justify-center z-[9999]">
   <h1 class="text-3xl text-pink-600 font-bold animate-pulse">
-    💖 Loading Sayang...
+    💖 Loading Cantikk...
   </h1>
   <p class="text-sm text-gray-600 mt-2">Tunggu bentar ya 😭💕</p>
 </div>
@@ -38,6 +38,7 @@
 
     <!-- BXSEA -->
     <div class="bg-white p-4 rounded-2xl shadow hover:scale-[1.03] hover:shadow-pink-300 transition">
+
       <img src="sutt/Bx.jpg" class="w-full h-32 object-cover rounded-xl mb-3">
 
       <p class="font-semibold text-gray-700">08.00 - 15.00</p>
@@ -48,7 +49,13 @@
         📍 BXSea Bintaro
       </a>
 
-      <p class="text-sm text-gray-500"> Explore 🐠💖</p>
+      <p class="text-sm text-gray-500">Explore 🐠💖</p>
+
+      <a href="tiketbx.html"
+        class="block mt-3 bg-pink-500 text-white text-center py-2 rounded-xl font-semibold hover:bg-pink-600 transition">
+        🎟️ Lihat Tiket
+      </a>
+
     </div>
 
     <!-- BLOK M -->
@@ -67,7 +74,8 @@
     </div>
 
     <!-- CITYLIGHT -->
-    <div class="bg-white p-4 rounded-2xl shadow hover:scale-[1.03] hover:shadow-pink-300 transition">
+  <div class="bg-white p-4 rounded-2xl shadow hover:scale-[1.03] hover:shadow-pink-300 transition">
+
       <img src="sutt/citylight.jpg" class="w-full h-32 object-cover rounded-xl mb-3">
 
       <p class="font-semibold text-gray-700">18.00 - 20.00</p>
@@ -79,12 +87,22 @@
       </a>
 
       <p class="text-sm text-gray-500">Menikmati malam 🌆💖</p>
-    </div>
+
+      <!-- BUTTON -->
+      <a href="tiketcitylight.html"
+        class="block mt-3 bg-pink-500 text-white text-center py-2 rounded-xl font-semibold hover:bg-pink-600 transition">
+        🎟️ Lihat Tiket
+      </a>
+
+  </div>
 
     <!-- LAST -->
     <div class="bg-white p-4 rounded-2xl shadow hover:scale-[1.03] hover:shadow-pink-300 transition">
       <p class="font-semibold text-gray-700">21.00 - Selesai</p>
-      <p class="text-pink-500 font-semibold mt-1">💖 Quality Time 💖</p>
+      <p onclick="openKado()"
+        class="text-pink-500 font-semibold mt-1 cursor-pointer hover:underline">
+        💖 Quality Time 💖
+      </p>
     </div>
 
   </div>
@@ -106,7 +124,33 @@
 
 </div>
 
+<!-- MODAL KADO -->
+<div id="modalKado"
+     class="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] hidden">
 
+  <div class="bg-white rounded-3xl p-6 text-center max-w-sm w-full relative">
+
+    <!-- tombol close -->
+    <button onclick="closeKado()"
+      class="absolute top-2 right-3 text-gray-500 text-xl">
+      ✖
+    </button>
+
+    <!-- isi popup -->
+    <h2 class="text-xl font-bold text-pink-500">🎁 Surprise!</h2>
+
+    <p class="mt-3 text-gray-600">
+      Silahkan buka kado kamu yaa 💖🥺
+    </p>
+
+    <!-- tombol buka -->
+    <button onclick="alert('Hehe nanti aku kasih langsung ya 😆💖')"
+      class="mt-4 bg-pink-500 text-white px-5 py-2 rounded-xl hover:bg-pink-600 transition">
+      Buka Kado 🎁
+    </button>
+
+  </div>
+</div>
 
 <script src="Script.js"></script>
 <script src="App.js"></script>
@@ -184,6 +228,17 @@ if(btnSelesai){
   });
 }
 </script>
+
+<script>
+function openKado(){
+  document.getElementById("modalKado").classList.remove("hidden");
+}
+
+function closeKado(){
+  document.getElementById("modalKado").classList.add("hidden");
+}
+</script>
+
 
 </body>
 </html>
