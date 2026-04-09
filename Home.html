@@ -41,7 +41,7 @@
 </audio>
 
 <!-- NAV -->
-<div id="navbar" class="fixed bottom-0 left-0 right-0 bg-white/70 backdrop-blur-lg flex justify-around py-3 text-xl shadow-inner transition-all duration-300">
+<div id="navbar" class="fixed bottom-4 left-4 right-4 bg-white/70 backdrop-blur-xl flex justify-around py-3 text-xl rounded-2xl shadow-xl transition-all duration-300">
 
   <a href="Home.html">🏠</a>
   <a href="Kalender.html">📅</a>
@@ -198,6 +198,25 @@ if(music){
     localStorage.setItem("musicTime", music.currentTime);
   },1000);
 }
+</script>
+
+<script>
+let lastScroll = 0;
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+  let currentScroll = window.scrollY;
+
+  if(currentScroll > lastScroll){
+    // scroll ke bawah → sembunyikan
+    navbar.style.transform = "translateY(100%)";
+  } else {
+    // scroll ke atas → munculin
+    navbar.style.transform = "translateY(0)";
+  }
+
+  lastScroll = currentScroll;
+});
 </script>
 
 </body>
