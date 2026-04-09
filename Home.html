@@ -25,18 +25,30 @@
 
 </head>
 
-<body class="bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen">
+
+<body class="opacity-0 scale-95 bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen transition-all duration-500">
+
+<div id="splash" class="fixed inset-0 bg-pink-200 flex flex-col items-center justify-center z-[9999]">
+  <h1 class="text-3xl text-pink-600 font-bold animate-pulse">
+    💖 Loading Sayang...
+  </h1>
+  <p class="text-sm text-gray-600 mt-2">Tunggu bentar ya 😭💕</p>
+</div>
+
 
 <audio id="music" loop>
   <source src="music.mp3">
 </audio>
 
 <!-- NAV -->
-<div class="flex justify-center gap-3 p-3 text-sm">
-  <a href="Undangan.html">💌</a>
+<div class="fixed bottom-0 left-0 right-0 bg-white/70 backdrop-blur-lg flex justify-around py-3 text-xl shadow-inner">
+
+  <a href="Home.html">🏠</a>
   <a href="Kalender.html">📅</a>
+  <a href="Undangan.html">💌</a>
   <a href="Dresscode.html">👗</a>
   <a href="Rundown.html">⏰</a>
+
 </div>
 
 <!-- HERO -->
@@ -68,47 +80,49 @@
   <!-- PROGRESS BAR -->
   <div id="progress" class="flex gap-1 mb-3"></div>
 
-  <!-- STORY -->
-  <div id="story" class="relative overflow-hidden rounded-2xl">
+  <!-- GALERI -->
+<div class="mt-8 px-6">
+  <h2 class="text-center text-pink-500 font-bold">📸 Kenangan Kita</h2>
 
-    <!-- SLIDES -->
-    <div id="slider" class="flex transition duration-500">
+  <div class="overflow-hidden mt-4">
+    <div id="slider" class="flex transition duration-700">
 
-      <!-- FOTO -->
-      <div class="min-w-full flex justify-center items-center h-[70vh]">
-        <img src="sutt/Poto1.jpeg" class="h-full object-cover rounded-xl">
+      <div class="min-w-full flex justify-center">
+        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
+          <img src="sutt/Poto1.jpeg" class="w-40 h-64 object-cover rounded-xl bg-white p-1">
+        </div>
       </div>
 
-      <!-- VIDEO -->
-      <div class="min-w-full flex justify-center items-center h-[70vh]">
-        <video src="sutt/vid2.mp4"
-          class="h-full object-cover rounded-xl"
-          muted playsinline>
-        </video>
+      <div class="min-w-full flex justify-center">
+        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
+          <video src="sutt/vid2.mp4"
+            class="w-72 h-44 object-cover rounded-xl bg-black p-1"
+            autoplay muted loop playsinline>
+          </video>
+        </div>
       </div>
 
-      <!-- FOTO -->
-      <div class="min-w-full flex justify-center items-center h-[70vh]">
-        <img src="sutt/poto10.jpeg" class="h-full object-cover rounded-xl">
+      <div class="min-w-full flex justify-center">
+        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
+          <img src="sutt/poto10.jpeg" class="w-40 h-64 object-cover rounded-xl bg-white p-1">
+        </div>
       </div>
 
     </div>
-
-    <!-- TAP AREA -->
-    <div class="absolute inset-0 flex">
-      <div id="leftTap" class="w-1/2"></div>
-      <div id="rightTap" class="w-1/2"></div>
-    </div>
-
   </div>
 </div>
+</div>
 
-<script src="script.js"></script>
+<!-- GANTI BAGIAN SCRIPT DI BAWAH INI -->
+
+<script src="Script.js"></script>
+<script src="App.js"></script>
 
 <script>
-// typing
-const text="Selamat ulang tahun Vivi 💖 Semoga kamu selalu bahagia 🥰";
+// typing effect
+const text="Selamat ulang tahun Vivi 💖 Semoga kamu selalu bahagia 🥰 Aku selalu sayang kamu 😭💕";
 let i=0;
+
 function t(){
   if(i<text.length){
     document.getElementById("typing").innerHTML+=text[i++];
@@ -117,18 +131,73 @@ function t(){
 }
 t();
 
-// cake
-document.getElementById("cake").onclick=()=>{
-  document.getElementById("cake").innerHTML="🎂";
-  alert("Make a wish 💖");
-}
 
-// slider
-let index=0;
-setInterval(()=>{
-  index=(index+1)%3;
-  document.getElementById("slider").style.transform=`translateX(-${index*100}%)`;
-},3000);
+// 🎂 CAKE FIX
+const cake = document.getElementById("cake");
+
+cake.addEventListener("click", ()=>{
+  cake.innerHTML="🎂";
+  
+  // confetti
+  for(let i=0;i<50;i++){
+    const c=document.createElement("div");
+    c.style.position="fixed";
+    c.style.width="6px";
+    c.style.height="6px";
+    c.style.background=["pink","white","deeppink"][Math.floor(Math.random()*3)];
+    c.style.left=Math.random()*100+"vw";
+    c.style.top="0";
+    c.style.animation="fall 3s linear";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+
+  alert("Make a wish ya 💖😭");
+});
+</script>
+
+<script>
+// ==========================
+// 📱 APP TRANSITION SYSTEM
+// ==========================
+
+// ANIMASI MASUK
+window.addEventListener("load", ()=>{
+  document.body.classList.remove("opacity-0","scale-95");
+});
+
+// ANIMASI PINDAH HALAMAN
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+
+    document.body.classList.add("opacity-0","scale-95");
+
+    setTimeout(()=>{
+      window.location = this.href;
+    },300);
+  });
+});
+
+
+// ==========================
+// 🎵 MUSIC PERSIST (ANTI RESTART)
+// ==========================
+const music = document.getElementById("music");
+
+if(music){
+  // ambil waktu terakhir
+  const savedTime = localStorage.getItem("musicTime");
+
+  if(savedTime){
+    music.currentTime = savedTime;
+  }
+
+  // simpan posisi tiap detik
+  setInterval(()=>{
+    localStorage.setItem("musicTime", music.currentTime);
+  },1000);
+}
 </script>
 
 </body>

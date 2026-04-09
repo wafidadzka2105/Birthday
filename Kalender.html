@@ -29,7 +29,15 @@
 
 </head>
 
-<body class="bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen flex items-center justify-center">
+
+<body class="opacity-0 scale-95 bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen transition-all duration-500">
+
+<div id="splash" class="fixed inset-0 bg-pink-200 flex flex-col items-center justify-center z-[9999]">
+  <h1 class="text-3xl text-pink-600 font-bold animate-pulse">
+    💖 Loading Sayang...
+  </h1>
+  <p class="text-sm text-gray-600 mt-2">Tunggu bentar ya 😭💕</p>
+</div>
 
 <audio id="music" loop>
   <source src="music.mp3">
@@ -64,7 +72,8 @@
 
 </div>
 
-<script src="script.js"></script>
+<script src="Script.js"></script>
+<script src="App.js"></script>
 
 <script>
 // MUSIC
@@ -87,7 +96,7 @@ for(let i=1;i<=31;i++){
   const el = document.createElement("div");
 
   if(i === 3){
-    el.className = "bg-pink-500 text-white p-2 rounded-lg font-bold shadow glow cursor-pointer animate-pulse";
+    el.className = "bg-pink-500 text-white p-2 rounded-lg font-bold shadow glow cursor-pointer animate-bounce";
     el.innerHTML = "💖<br>3";
 
     el.onclick = ()=>{
@@ -134,6 +143,50 @@ setInterval(()=>{
   setTimeout(()=>h.remove(),3000);
 },300);
 
+</script>
+
+<script>
+// ==========================
+// 📱 APP TRANSITION SYSTEM
+// ==========================
+
+// ANIMASI MASUK
+window.addEventListener("load", ()=>{
+  document.body.classList.remove("opacity-0","scale-95");
+});
+
+// ANIMASI PINDAH HALAMAN
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+
+    document.body.classList.add("opacity-0","scale-95");
+
+    setTimeout(()=>{
+      window.location = this.href;
+    },300);
+  });
+});
+
+
+// ==========================
+// 🎵 MUSIC PERSIST (ANTI RESTART)
+// ==========================
+const music = document.getElementById("music");
+
+if(music){
+  // ambil waktu terakhir
+  const savedTime = localStorage.getItem("musicTime");
+
+  if(savedTime){
+    music.currentTime = savedTime;
+  }
+
+  // simpan posisi tiap detik
+  setInterval(()=>{
+    localStorage.setItem("musicTime", music.currentTime);
+  },1000);
+}
 </script>
 
 </body>

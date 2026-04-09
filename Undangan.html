@@ -3,77 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Undangan 💌</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-@keyframes fall {
-  to { transform: translateY(100vh); opacity:0;}
-}
+@keyframes fall { to { transform: translateY(100vh); opacity:0; } }
+
+.glow { box-shadow: 0 0 20px #f472b6; }
+
 </style>
 
 </head>
 
-<body class="bg-pink-100 flex items-center justify-center min-h-screen">
 
-<audio id="music" loop>
-  <source src="music.mp3">
-</audio>
+<body class="opacity-0 scale-95 bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen transition-all duration-500">
 
-<div class="bg-white/80 backdrop-blur-lg p-6 rounded-3xl text-center shadow-lg max-w-md">
+<div id="splash" class="fixed inset-0 bg-pink-200 flex flex-col items-center justify-center z-[9999]">
+  <h1 class="text-3xl text-pink-600 font-bold animate-pulse">
+    💖 Loading Sayang...
+  </h1>
+  <p class="text-sm text-gray-600 mt-2">Tunggu bentar ya 😭💕</p>
+</div>
 
-  <h1 class="text-2xl text-pink-500 font-bold">💌 Birthday Walk</h1>
+<audio id="music" loop><source src="music.mp3"></audio>
 
-  <p class="mt-3 text-gray-600">
-    Kamu mau jalan bareng aku di hari spesial ini? 💖🥺
+<div class="bg-white/70 backdrop-blur-lg p-6 rounded-3xl shadow-xl text-center max-w-md w-full relative">
+
+  <h1 class="text-2xl font-bold text-pink-500 glow">💌 Undangan</h1>
+
+  <p class="mt-4 text-gray-700 leading-relaxed">
+    Hai Vivi 💖<br><br>
+    Mau ga kamu jalan bareng aku di hari spesial kamu? 🥺💕
   </p>
 
   <!-- BUTTON -->
-  <div class="flex justify-center gap-4 mt-6">
+  <div class="flex justify-center gap-4 mt-6 relative h-20">
 
     <!-- IYA -->
-    <button onclick="jawabIya()" 
-      class="bg-pink-500 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition">
-      Iya 💕
+    <button onclick="jawabIya()"
+      class="bg-pink-500 text-white px-6 py-2 rounded-full shadow-lg glow hover:scale-110 transition">
+      Iya 💖
     </button>
 
     <!-- TIDAK -->
-    <button id="btnTidak" onclick="jawabTidak()" 
-      class="bg-gray-300 px-4 py-2 rounded-xl hover:scale-105 transition">
+    <button id="tidakBtn"
+      onmouseover="kabur()"
+      onclick="kabur()"
+      class="bg-gray-300 px-6 py-2 rounded-full shadow absolute">
       Tidak 😢
     </button>
 
   </div>
 
-  <!-- HASIL -->
-  <p id="hasil" class="mt-4 text-pink-500 font-semibold"></p>
-
-  <a href="Home.html" class="block mt-4 text-pink-500">← Kembali</a>
+  <a href="Home.html" class="block mt-6 text-pink-500 font-semibold hover:underline">
+    ← Kembali
+  </a>
 
 </div>
 
-<script src="script.js"></script>
+<script src="Script.js"></script>
+<script src="App.js"></script>
 
 <script>
-// JAWAB IYA
+// MUSIC
+document.addEventListener("click", ()=>{
+  const music=document.getElementById("music");
+  if(music) music.play();
+},{once:true});
+
+// TOMBOL TIDAK SUPER NGESLIN 😈
+let scale = 1;
+
+function kabur(){
+  const btn = document.getElementById("tidakBtn");
+
+  // makin kecil
+  scale -= 0.1;
+  if(scale < 0.3) scale = 0.3;
+
+  // posisi random / pojok
+  const randomX = Math.random() * (window.innerWidth - 100);
+  const randomY = Math.random() * (window.innerHeight - 50);
+
+  // kadang lompat ke pojok
+  if(Math.random() > 0.6){
+    const positions = [
+      [0,0],
+      [window.innerWidth-100,0],
+      [0,window.innerHeight-50],
+      [window.innerWidth-100,window.innerHeight-50]
+    ];
+    const pos = positions[Math.floor(Math.random()*4)];
+    btn.style.left = pos[0] + "px";
+    btn.style.top = pos[1] + "px";
+  } else {
+    btn.style.left = randomX + "px";
+    btn.style.top = randomY + "px";
+  }
+
+  btn.style.transform = `scale(${scale})`;
+}
+
+
+// JAWAB IYA 💖
 function jawabIya(){
-  document.getElementById("hasil").innerHTML = "Yayyy 💖 Aku tunggu yaa! 🥰";
+  // confetti
+  for(let i=0;i<80;i++){
+    const c=document.createElement("div");
+    c.style.position="fixed";
+    c.style.width="6px";
+    c.style.height="6px";
+    c.style.background=["pink","white","deeppink"][Math.floor(Math.random()*3)];
+    c.style.left=Math.random()*100+"vw";
+    c.style.top="0";
+    c.style.animation="fall 3s linear";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3000);
+  }
+
+  // alert romantis
+  setTimeout(()=>{
+    alert("YEAYYY 💖 Aku tunggu ya sayang 😭💕");
+  },300);
+
+  // pindah halaman
+  setTimeout(()=>{
+    window.location.href = "Rundown.html";
+  },2000);
 }
+</script>
 
-// JAWAB TIDAK (TAPI DIPAKSA JADI IYA 😈)
-function jawabTidak(){
-  document.getElementById("hasil").innerHTML = "Hehe... pilihan kamu cuma satu 😆💕 Kamu tetap ikut ya!";
-}
+<script>
+// ==========================
+// 📱 APP TRANSITION SYSTEM
+// ==========================
 
-// BONUS: tombol tidak kabur 😆
-const btnTidak = document.getElementById("btnTidak");
-
-btnTidak.addEventListener("mouseover", ()=>{
-  const x = Math.random()*200 - 100;
-  const y = Math.random()*200 - 100;
-  btnTidak.style.transform = `translate(${x}px, ${y}px)`;
+// ANIMASI MASUK
+window.addEventListener("load", ()=>{
+  document.body.classList.remove("opacity-0","scale-95");
 });
+
+// ANIMASI PINDAH HALAMAN
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+
+    document.body.classList.add("opacity-0","scale-95");
+
+    setTimeout(()=>{
+      window.location = this.href;
+    },300);
+  });
+});
+
+
+// ==========================
+// 🎵 MUSIC PERSIST (ANTI RESTART)
+// ==========================
+const music = document.getElementById("music");
+
+if(music){
+  // ambil waktu terakhir
+  const savedTime = localStorage.getItem("musicTime");
+
+  if(savedTime){
+    music.currentTime = savedTime;
+  }
+
+  // simpan posisi tiap detik
+  setInterval(()=>{
+    localStorage.setItem("musicTime", music.currentTime);
+  },1000);
+}
 </script>
 
 </body>

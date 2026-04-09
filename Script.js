@@ -1,4 +1,6 @@
-// ❤️ LOVE
+// ==========================
+// ❤️ LOVE GLOBAL (SEMUA HALAMAN)
+// ==========================
 setInterval(()=>{
   const h=document.createElement("div");
   h.innerHTML="💖";
@@ -12,13 +14,9 @@ setInterval(()=>{
 },300);
 
 
-// 🎉 CONFETTI
-window.onload=()=>{
-  initStory();
-}
-
-
-// 🎵 MUSIC
+// ==========================
+// 🎵 MUSIC GLOBAL
+// ==========================
 document.addEventListener("click", ()=>{
   const music=document.getElementById("music");
   if(music) music.play();
@@ -26,25 +24,32 @@ document.addEventListener("click", ()=>{
 
 
 // ==========================
-// 📱 IG STORY SYSTEM
+// 📱 IG STORY SYSTEM (SAFE)
 // ==========================
 let index = 0;
-let duration = 5000; // 5 detik per slide
+let duration = 22000;
 let timer;
 
+window.onload = ()=>{
+  if(document.getElementById("slider")){
+    initStory();
+  }
+};
+
+
+// INIT
 function initStory(){
   createProgress();
   showSlide(index);
   startProgress();
-
-  document.getElementById("rightTap").onclick = next;
-  document.getElementById("leftTap").onclick = prev;
 }
 
 
 // PROGRESS BAR
 function createProgress(){
   const container = document.getElementById("progress");
+  if(!container) return;
+
   const total = document.querySelectorAll("#slider > div").length;
 
   for(let i=0;i<total;i++){
@@ -60,9 +65,11 @@ function createProgress(){
 }
 
 
-// TAMPILKAN SLIDE
+// SHOW SLIDE
 function showSlide(i){
   const slider = document.getElementById("slider");
+  if(!slider) return;
+
   slider.style.transform = `translateX(-${i*100}%)`;
   handleVideo();
 }
@@ -76,19 +83,12 @@ function next(){
 }
 
 
-// PREV
-function prev(){
-  const total = document.querySelectorAll("#slider > div").length;
-  index = (index-1+total)%total;
-  resetProgress();
-}
-
-
-// PROGRESS ANIMATION
+// PROGRESS
 function startProgress(){
   const bars = document.querySelectorAll("#progress div div");
-  let current = bars[index];
+  if(!bars.length) return;
 
+  let current = bars[index];
   let width = 0;
 
   timer = setInterval(()=>{

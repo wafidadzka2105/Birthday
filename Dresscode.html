@@ -1,27 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script src="https://cdn.tailwindcss.com"></script>
-<style>@keyframes fall{to{transform:translateY(100vh);opacity:0;}}</style>
+
+<style>
+@keyframes fall { to { transform: translateY(100vh); opacity:0; } }
+.glow { box-shadow: 0 0 20px #f472b6; }
+</style>
+
 </head>
 
-<body class="bg-pink-100 flex items-center justify-center min-h-screen">
+
+<body class="opacity-0 scale-95 bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen transition-all duration-500">
+
+<div id="splash" class="fixed inset-0 bg-pink-200 flex flex-col items-center justify-center z-[9999]">
+  <h1 class="text-3xl text-pink-600 font-bold animate-pulse">
+    💖 Loading Sayang...
+  </h1>
+  <p class="text-sm text-gray-600 mt-2">Tunggu bentar ya 😭💕</p>
+</div>
 
 <audio id="music" loop><source src="music.mp3"></audio>
 
-<div class="bg-white p-6 rounded-3xl text-center shadow">
-<h1 class="text-pink-500 text-xl">👗 Dresscode</h1>
+<div class="bg-white/70 backdrop-blur-lg p-6 rounded-3xl shadow-xl text-center max-w-md w-full">
 
-<div class="grid grid-cols-3 gap-2 mt-4">
-<img src="pink1.jpg">
-<img src="pink2.jpg">
-<img src="pink3.jpg">
+  <h1 class="text-pink-500 text-2xl font-bold glow">👗 Dresscode</h1>
+
+  <p class="text-gray-600 mt-2">Tema: Pink & Cute 💖</p>
+
+  <div class="grid grid-cols-3 gap-3 mt-5">
+
+    <img src="pink1.jpg" class="rounded-xl hover:scale-105 hover:shadow-pink-300 shadow-lg transition">
+    <img src="pink1.jpg" class="rounded-xl hover:scale-105 hover:shadow-pink-300 shadow-lg transition">
+
+  </div>
+
+  <p class="mt-4 text-pink-500 font-semibold">
+    ✨ Pakai outfit terbaikmu ya 💕
+  </p>
+
+  <a href="Home.html" class="block mt-6 text-pink-500 font-semibold hover:underline">
+    ← Kembali
+  </a>
+
 </div>
 
-<a href="Home.html" class="block mt-4 text-pink-500">← Kembali</a>
-</div>
+<script src="Script.js"></script>
+<script src="App.js"></script>
 
-<script src="script.js"></script>
+<script>
+// ==========================
+// 📱 APP TRANSITION SYSTEM
+// ==========================
+
+// ANIMASI MASUK
+window.addEventListener("load", ()=>{
+  document.body.classList.remove("opacity-0","scale-95");
+});
+
+// ANIMASI PINDAH HALAMAN
+document.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click", function(e){
+    e.preventDefault();
+
+    document.body.classList.add("opacity-0","scale-95");
+
+    setTimeout(()=>{
+      window.location = this.href;
+    },300);
+  });
+});
+
+
+// ==========================
+// 🎵 MUSIC PERSIST (ANTI RESTART)
+// ==========================
+const music = document.getElementById("music");
+
+if(music){
+  // ambil waktu terakhir
+  const savedTime = localStorage.getItem("musicTime");
+
+  if(savedTime){
+    music.currentTime = savedTime;
+  }
+
+  // simpan posisi tiap detik
+  setInterval(()=>{
+    localStorage.setItem("musicTime", music.currentTime);
+  },1000);
+}
+</script>
+
 </body>
 </html>
