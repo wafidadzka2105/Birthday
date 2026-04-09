@@ -90,12 +90,23 @@
   </div>
 
   <!-- BACK -->
+  <div class="flex gap-3 mt-6">
+  
   <a href="Home.html"
-    class="block text-center mt-6 text-pink-500 font-semibold hover:underline">
+    class="w-1/2 text-center text-pink-500 font-semibold border border-pink-500 py-2 rounded-xl hover:bg-pink-100 transition">
     ← Kembali
   </a>
 
+  <button id="btnSelesai"
+    class="w-1/2 bg-pink-500 text-white py-2 rounded-xl font-semibold shadow hover:scale-105 transition">
+    💖 Selesai
+  </button>
+
 </div>
+
+</div>
+
+
 
 <script src="Script.js"></script>
 <script src="App.js"></script>
@@ -141,6 +152,36 @@ if(music){
   setInterval(()=>{
     localStorage.setItem("musicTime", music.currentTime);
   },1000);
+}
+</script>
+
+<script>
+// ==========================
+// 💖 POPUP SELESAI
+// ==========================
+const btnSelesai = document.getElementById("btnSelesai");
+
+if(btnSelesai){
+  btnSelesai.addEventListener("click", ()=>{
+
+    // popup
+    alert("💖 Selamat menikmati perjalanannya 💖\nSemoga harimu penuh kebahagiaan 🥰✨");
+
+    // confetti kecil biar aesthetic 😆
+    for(let i=0;i<40;i++){
+      const c=document.createElement("div");
+      c.style.position="fixed";
+      c.style.width="6px";
+      c.style.height="6px";
+      c.style.background=["#ff69b4","#ffc0cb","#ff1493","#ffffff"][Math.floor(Math.random()*4)];
+      c.style.left=Math.random()*100+"vw";
+      c.style.top="0";
+      c.style.animation="fall 3s linear";
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),3000);
+    }
+
+  });
 }
 </script>
 
