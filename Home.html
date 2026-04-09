@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 💖</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+@keyframes fall {
+  to { transform: translateY(100vh); opacity:0;}
+}
+
+/* GLOW EFFECT */
+@keyframes glow {
+  0% { box-shadow: 0 0 10px #f9a8d4; }
+  50% { box-shadow: 0 0 25px #f472b6, 0 0 40px #f9a8d4; }
+  100% { box-shadow: 0 0 10px #f9a8d4; }
+}
+.glow {
+  animation: glow 2s infinite;
+}
+</style>
+
+</head>
+
+<body class="bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen">
+
+<audio id="music" loop>
+  <source src="music.mp3">
+</audio>
+
+<!-- NAV -->
+<div class="flex justify-center gap-3 p-3 text-sm">
+  <a href="undangan.html">💌</a>
+  <a href="kalender.html">📅</a>
+  <a href="dresscode.html">👗</a>
+  <a href="rundown.html">⏰</a>
+</div>
+
+<!-- HERO -->
+<div class="text-center p-6">
+  <h1 class="text-3xl font-bold text-pink-600">🎉 Happy Birthday 🎉</h1>
+  <h2 class="mt-2">Vivi Meliani Arifin 💕</h2>
+
+  <!-- FOTO GLOW -->
+  <div class="flex justify-center mt-5">
+    <div class="p-[3px] rounded-full bg-gradient-to-r from-pink-300 to-pink-500 glow">
+      <img 
+        src="sutt/poto8.jpeg" 
+        class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover bg-white p-1"
+      >
+    </div>
+  </div>
+
+  <!-- TYPING -->
+  <p id="typing" class="mt-4 text-gray-600"></p>
+</div>
+
+<!-- CAKE -->
+<div class="text-center text-6xl cursor-pointer" id="cake">🎂🔥</div>
+<p class="text-center text-sm text-gray-500">Klik lilin untuk meniup 🎂</p>
+
+<!-- GALERI -->
+<div class="mt-8 px-6">
+  <h2 class="text-center text-pink-500 font-bold">📸 Kenangan Kita</h2>
+
+  <div class="overflow-hidden mt-4">
+    <div id="slider" class="flex transition duration-700 gap-4">
+
+      <!-- FOTO (PORTRAIT) -->
+      <div class="min-w-full flex justify-center">
+        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
+          <img src="sutt/Poto1.jpeg" 
+            class="w-40 md:w-48 h-64 md:h-72 object-cover rounded-xl bg-white p-1">
+        </div>
+      </div>
+
+      <!-- VIDEO (LANDSCAPE) -->
+      <div class="min-w-full flex justify-center">
+        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
+          <video 
+            src="sutt/vid2.mp4"
+            class="w-72 md:w-96 h-44 md:h-56 object-cover rounded-xl bg-black p-1"
+            autoplay muted loop playsinline>
+          </video>
+        </div>
+      </div>
+
+      <!-- FOTO (PORTRAIT) -->
+      <div class="min-w-full flex justify-center">
+        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
+          <img src="sutt/poto10.jpeg" 
+            class="w-40 md:w-48 h-64 md:h-72 object-cover rounded-xl bg-white p-1">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+// typing
+const text="Selamat ulang tahun Vivi 💖 Semoga kamu selalu bahagia 🥰";
+let i=0;
+function t(){
+  if(i<text.length){
+    document.getElementById("typing").innerHTML+=text[i++];
+    setTimeout(t,40);
+  }
+}
+t();
+
+// cake
+document.getElementById("cake").onclick=()=>{
+  document.getElementById("cake").innerHTML="🎂";
+  alert("Make a wish 💖");
+}
+
+// slider
+let index=0;
+setInterval(()=>{
+  index=(index+1)%3;
+  document.getElementById("slider").style.transform=`translateX(-${index*100}%)`;
+},3000);
+<div id="dots" class="flex justify-center gap-2 mt-4"></div>
+</script>
+
+</body>
+</html>

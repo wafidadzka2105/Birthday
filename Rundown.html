@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rundown ⏰</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+@keyframes fall {
+  to { transform: translateY(100vh); opacity:0;}
+}
+</style>
+
+</head>
+
+<body class="bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen flex items-center justify-center">
+
+<audio id="music" loop>
+  <source src="music.mp3">
+</audio>
+
+<!-- CARD -->
+<div class="bg-white/70 backdrop-blur-lg p-6 rounded-3xl shadow-xl w-full max-w-md">
+
+  <h1 class="text-pink-500 text-2xl font-bold text-center">⏰ Rundown</h1>
+
+  <div class="mt-6 space-y-6">
+
+    <!-- BXSEA -->
+    <div class="bg-white p-4 rounded-2xl shadow hover:scale-[1.02] transition">
+      <img src="sutt/bxsea.jpg" class="w-full h-32 object-cover rounded-xl mb-3">
+
+      <p class="font-semibold text-gray-700">08.00 - 14.00</p>
+
+      <a href="https://maps.google.com/?q=BXSea Bintaro"
+        target="_blank"
+        class="text-pink-500 font-semibold flex items-center gap-1 mt-1">
+        📍 BXSea Bintaro
+      </a>
+
+      <p class="text-sm text-gray-500">OTW & Explore 🐠💖</p>
+    </div>
+
+    <!-- BLOK M -->
+    <div class="bg-white p-4 rounded-2xl shadow hover:scale-[1.02] transition">
+      <img src="sutt/blokm.jpg" class="w-full h-32 object-cover rounded-xl mb-3">
+
+      <p class="font-semibold text-gray-700">14.00 - 17.00</p>
+
+      <a href="https://maps.google.com/?q=Blok M Jakarta"
+        target="_blank"
+        class="text-pink-500 font-semibold flex items-center gap-1 mt-1">
+        📍 Blok M
+      </a>
+
+      <p class="text-sm text-gray-500">Jalan santai 🛍️✨</p>
+    </div>
+
+    <!-- CITYLIGHT -->
+    <div class="bg-white p-4 rounded-2xl shadow hover:scale-[1.02] transition">
+      <img src="sutt/citylight.jpg" class="w-full h-32 object-cover rounded-xl mb-3">
+
+      <p class="font-semibold text-gray-700">18.00 - 20.00</p>
+
+      <a href="https://maps.google.com/?q=Jakarta city night view"
+        target="_blank"
+        class="text-pink-500 font-semibold flex items-center gap-1 mt-1">
+        📍 Citylight Jakarta
+      </a>
+
+      <p class="text-sm text-gray-500">Menikmati malam 🌆💖</p>
+    </div>
+
+    <!-- LAST -->
+    <div class="bg-white p-4 rounded-2xl shadow animate-pulse">
+      <p class="font-semibold text-gray-700">21.00 - Selesai</p>
+      <p class="text-pink-500 font-semibold mt-1">💖 Quality Time 💖</p>
+    </div>
+
+  </div>
+
+  <!-- BACK -->
+  <a href="home.html"
+    class="block text-center mt-6 text-pink-500 font-semibold hover:underline">
+    ← Kembali
+  </a>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

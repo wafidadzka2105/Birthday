@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan 💌</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+@keyframes fall {
+  to { transform: translateY(100vh); opacity:0;}
+}
+</style>
+
+</head>
+
+<body class="bg-pink-100 flex items-center justify-center min-h-screen">
+
+<audio id="music" loop>
+  <source src="music.mp3">
+</audio>
+
+<div class="bg-white/80 backdrop-blur-lg p-6 rounded-3xl text-center shadow-lg max-w-md">
+
+  <h1 class="text-2xl text-pink-500 font-bold">💌 Birthday Walk</h1>
+
+  <p class="mt-3 text-gray-600">
+    Kamu mau jalan bareng aku di hari spesial ini? 💖🥺
+  </p>
+
+  <!-- BUTTON -->
+  <div class="flex justify-center gap-4 mt-6">
+
+    <!-- IYA -->
+    <button onclick="jawabIya()" 
+      class="bg-pink-500 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition">
+      Iya 💕
+    </button>
+
+    <!-- TIDAK -->
+    <button id="btnTidak" onclick="jawabTidak()" 
+      class="bg-gray-300 px-4 py-2 rounded-xl hover:scale-105 transition">
+      Tidak 😢
+    </button>
+
+  </div>
+
+  <!-- HASIL -->
+  <p id="hasil" class="mt-4 text-pink-500 font-semibold"></p>
+
+  <a href="home.html" class="block mt-4 text-pink-500">← Kembali</a>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+// JAWAB IYA
+function jawabIya(){
+  document.getElementById("hasil").innerHTML = "Yayyy 💖 Aku tunggu yaa! 🥰";
+}
+
+// JAWAB TIDAK (TAPI DIPAKSA JADI IYA 😈)
+function jawabTidak(){
+  document.getElementById("hasil").innerHTML = "Hehe... pilihan kamu cuma satu 😆💕 Kamu tetap ikut ya!";
+}
+
+// BONUS: tombol tidak kabur 😆
+const btnTidak = document.getElementById("btnTidak");
+
+btnTidak.addEventListener("mouseover", ()=>{
+  const x = Math.random()*200 - 100;
+  const y = Math.random()*200 - 100;
+  btnTidak.style.transform = `translate(${x}px, ${y}px)`;
+});
+</script>
+
+</body>
+</html>
