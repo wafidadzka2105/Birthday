@@ -12,22 +12,29 @@
   to { transform: translateY(100vh); opacity:0;}
 }
 
-/* GLOW EFFECT */
+/* GLOW */
 @keyframes glow {
   0% { box-shadow: 0 0 10px #f9a8d4; }
-  50% { box-shadow: 0 0 25px #f472b6, 0 0 40px #f9a8d4; }
+  50% { box-shadow: 0 0 25px #f472b6; }
   100% { box-shadow: 0 0 10px #f9a8d4; }
 }
 .glow {
   animation: glow 2s infinite;
 }
+
+/* SAFE AREA */
+@supports(padding: max(0px)) {
+  body {
+    padding-bottom: max(7rem, env(safe-area-inset-bottom));
+  }
+}
 </style>
 
 </head>
 
+<body class="opacity-0 scale-95 bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen transition-all duration-500 pb-28">
 
-<body class="opacity-0 scale-95 bg-gradient-to-b from-pink-100 to-pink-200 min-h-screen transition-all duration-500">
-
+<!-- SPLASH -->
 <div id="splash" class="fixed inset-0 bg-pink-200 flex flex-col items-center justify-center z-[9999]">
   <h1 class="text-3xl text-pink-600 font-bold animate-pulse">
     💖 Loading Sayang...
@@ -35,13 +42,12 @@
   <p class="text-sm text-gray-600 mt-2">Tunggu bentar ya 😭💕</p>
 </div>
 
-
 <audio id="music" loop>
   <source src="music.mp3">
 </audio>
 
-<!-- NAV -->
-<div id="navbar" class="fixed bottom-4 left-4 right-4 bg-white/70 backdrop-blur-xl flex justify-around py-3 text-xl rounded-2xl shadow-xl transition-all duration-300">
+<!-- NAVBAR -->
+<div id="navbar" class="fixed bottom-4 left-4 right-4 bg-white/70 backdrop-blur-xl flex justify-around py-3 text-xl rounded-2xl shadow-xl transition-all duration-300 border border-pink-200">
 
   <a href="Home.html">🏠</a>
   <a href="Kalender.html">📅</a>
@@ -56,17 +62,13 @@
   <h1 class="text-3xl font-bold text-pink-600">🎉 Happy Birthday 🎉</h1>
   <h2 class="mt-2">Vivi Meliani Arifin 💕</h2>
 
-  <!-- FOTO GLOW -->
   <div class="flex justify-center mt-5">
     <div class="p-[3px] rounded-full bg-gradient-to-r from-pink-300 to-pink-500 glow">
-      <img 
-        src="sutt/poto8.jpeg" 
-        class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover bg-white p-1"
-      >
+      <img src="sutt/poto8.jpeg"
+        class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover bg-white p-1">
     </div>
   </div>
 
-  <!-- TYPING -->
   <p id="typing" class="mt-4 text-gray-600"></p>
 </div>
 
@@ -74,46 +76,42 @@
 <div class="text-center text-6xl cursor-pointer" id="cake">🎂🔥</div>
 <p class="text-center text-sm text-gray-500">Klik lilin untuk meniup 🎂</p>
 
-<!-- IG STORY STYLE -->
+<!-- SLIDER -->
 <div class="mt-8 px-4">
 
-  <!-- PROGRESS BAR -->
-  <div id="progress" class="flex gap-1 mb-3"></div>
+<div id="progress" class="flex gap-1 mb-3"></div>
 
-  <!-- GALERI -->
-<div class="mt-8 px-6">
+<!-- GALERI -->
+<div class="mt-8 px-4 mb-10">
+
   <h2 class="text-center text-pink-500 font-bold">📸 Kenangan Kita</h2>
 
   <div class="overflow-hidden mt-4">
     <div id="slider" class="flex transition duration-700">
 
-      <div class="min-w-full flex justify-center">
-        <div class="p-[4px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
-          <img src="sutt/Poto1.jpeg" class="w-40 h-64 object-cover rounded-xl bg-white p-1">
+      <div class="min-w-full flex justify-center px-2">
+        <div class="p-[4px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow w-full max-w-md">
+          <img src="sutt/Poto1.jpeg"
+            class="w-full aspect-video object-cover rounded-xl bg-white p-1">
         </div>
       </div>
-      
-      <div class="min-w-full flex justify-center">
-        <div class="p-[4px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
+
+      <div class="min-w-full flex justify-center px-2">
+        <div class="p-[4px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow w-full max-w-md">
           <video src="sutt/vid2.mp4"
-            class="w-72 h-44 object-cover rounded-xl bg-black p-1"
+            class="w-full aspect-video object-cover rounded-xl bg-black p-1"
             autoplay muted loop playsinline>
           </video>
         </div>
       </div>
 
-      <div class="min-w-full flex justify-center">
-        <div class="p-[4px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
-          <img src="sutt/poto10.jpeg" class="w-40 h-64 object-cover rounded-xl bg-white p-1">
+      <div class="min-w-full flex justify-center px-2">
+        <div class="p-[4px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow w-full max-w-md">
+          <img src="sutt/poto10.jpeg"
+            class="w-full aspect-video object-cover rounded-xl bg-white p-1">
         </div>
       </div>
-
-    </div>
-  </div>
 </div>
-</div>
-
-<!-- GANTI BAGIAN SCRIPT DI BAWAH INI -->
 
 <script src="Script.js"></script>
 <script src="App.js"></script>
