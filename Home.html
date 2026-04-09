@@ -62,41 +62,44 @@
 <div class="text-center text-6xl cursor-pointer" id="cake">🎂🔥</div>
 <p class="text-center text-sm text-gray-500">Klik lilin untuk meniup 🎂</p>
 
-<!-- GALERI -->
-<div class="mt-8 px-6">
-  <h2 class="text-center text-pink-500 font-bold">📸 Kenangan Kita</h2>
+<!-- IG STORY STYLE -->
+<div class="mt-8 px-4">
 
-  <div class="overflow-hidden mt-4">
-    <div id="slider" class="flex transition duration-700 gap-4">
+  <!-- PROGRESS BAR -->
+  <div id="progress" class="flex gap-1 mb-3"></div>
 
-      <!-- FOTO (PORTRAIT) -->
-      <div class="min-w-full flex justify-center">
-        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
-          <img src="sutt/Poto1.jpeg" 
-            class="w-40 md:w-48 h-64 md:h-72 object-cover rounded-xl bg-white p-1">
-        </div>
+  <!-- STORY -->
+  <div id="story" class="relative overflow-hidden rounded-2xl">
+
+    <!-- SLIDES -->
+    <div id="slider" class="flex transition duration-500">
+
+      <!-- FOTO -->
+      <div class="min-w-full flex justify-center items-center h-[70vh]">
+        <img src="sutt/Poto1.jpeg" class="h-full object-cover rounded-xl">
       </div>
 
-      <!-- VIDEO (LANDSCAPE) -->
-      <div class="min-w-full flex justify-center">
-        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
-          <video 
-            src="sutt/vid2.mp4"
-            class="w-72 md:w-96 h-44 md:h-56 object-cover rounded-xl bg-black p-1"
-            autoplay muted loop playsinline>
-          </video>
-        </div>
+      <!-- VIDEO -->
+      <div class="min-w-full flex justify-center items-center h-[70vh]">
+        <video src="sutt/vid2.mp4"
+          class="h-full object-cover rounded-xl"
+          muted playsinline>
+        </video>
       </div>
 
-      <!-- FOTO (PORTRAIT) -->
-      <div class="min-w-full flex justify-center">
-        <div class="p-[3px] rounded-2xl bg-gradient-to-r from-pink-300 to-pink-500 glow">
-          <img src="sutt/poto10.jpeg" 
-            class="w-40 md:w-48 h-64 md:h-72 object-cover rounded-xl bg-white p-1">
-        </div>
+      <!-- FOTO -->
+      <div class="min-w-full flex justify-center items-center h-[70vh]">
+        <img src="sutt/poto10.jpeg" class="h-full object-cover rounded-xl">
       </div>
 
     </div>
+
+    <!-- TAP AREA -->
+    <div class="absolute inset-0 flex">
+      <div id="leftTap" class="w-1/2"></div>
+      <div id="rightTap" class="w-1/2"></div>
+    </div>
+
   </div>
 </div>
 
@@ -126,7 +129,6 @@ setInterval(()=>{
   index=(index+1)%3;
   document.getElementById("slider").style.transform=`translateX(-${index*100}%)`;
 },3000);
-<div id="dots" class="flex justify-center gap-2 mt-4"></div>
 </script>
 
 </body>

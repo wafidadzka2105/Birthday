@@ -1,4 +1,4 @@
-// LOVE
+// ❤️ LOVE
 setInterval(()=>{
   const h=document.createElement("div");
   h.innerHTML="💖";
@@ -6,28 +6,19 @@ setInterval(()=>{
   h.style.top="0";
   h.style.left=Math.random()*100+"vw";
   h.style.animation="fall 3s linear";
+  h.style.zIndex="999";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),3000);
 },300);
 
-// CONFETTI
-window.onload=()=>{
-  for(let i=0;i<30;i++){
-    const c=document.createElement("div");
-    c.style.position="fixed";
-    c.style.width="6px";
-    c.style.height="6px";
-    c.style.background=["pink","white","deeppink"][Math.floor(Math.random()*3)];
-    c.style.left=Math.random()*100+"vw";
-    c.style.animation="fall 3s linear";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),3000);
-  }
 
-  initSlider(); // 🔥 INIT SLIDER
+// 🎉 CONFETTI
+window.onload=()=>{
+  initStory();
 }
 
-// MUSIC
+
+// 🎵 MUSIC
 document.addEventListener("click", ()=>{
   const music=document.getElementById("music");
   if(music) music.play();
@@ -35,82 +26,107 @@ document.addEventListener("click", ()=>{
 
 
 // ==========================
-// 🔥 SLIDER PRO SYSTEM
+// 📱 IG STORY SYSTEM
 // ==========================
 let index = 0;
-let startX = 0;
-let slider = document.getElementById("slider");
-let slides = slider.children;
-let total = slides.length;
-let dotsContainer = document.getElementById("dots");
+let duration = 5000; // 5 detik per slide
+let timer;
 
-// BUAT DOTS
-function createDots(){
+function initStory(){
+  createProgress();
+  showSlide(index);
+  startProgress();
+
+  document.getElementById("rightTap").onclick = next;
+  document.getElementById("leftTap").onclick = prev;
+}
+
+
+// PROGRESS BAR
+function createProgress(){
+  const container = document.getElementById("progress");
+  const total = document.querySelectorAll("#slider > div").length;
+
   for(let i=0;i<total;i++){
-    const dot=document.createElement("div");
-    dot.className="w-2 h-2 bg-pink-300 rounded-full cursor-pointer";
-    dot.onclick=()=>goToSlide(i);
-    dotsContainer.appendChild(dot);
+    const bar = document.createElement("div");
+    bar.className="flex-1 h-1 bg-pink-200 rounded overflow-hidden";
+
+    const fill = document.createElement("div");
+    fill.className="h-full bg-pink-500 w-0";
+
+    bar.appendChild(fill);
+    container.appendChild(bar);
   }
 }
 
-// UPDATE DOT
-function updateDots(){
-  const dots=dotsContainer.children;
-  for(let i=0;i<dots.length;i++){
-    dots[i].classList.remove("bg-pink-500","scale-125");
-    dots[i].classList.add("bg-pink-300");
-  }
-  dots[index].classList.add("bg-pink-500","scale-125");
-}
 
-// PINDAH SLIDE
-function goToSlide(i){
-  index=i;
-  slider.style.transform=`translateX(-${index*100}%)`;
-  updateDots();
+// TAMPILKAN SLIDE
+function showSlide(i){
+  const slider = document.getElementById("slider");
+  slider.style.transform = `translateX(-${i*100}%)`;
   handleVideo();
 }
 
-// AUTO SLIDE (50 detik)
-setInterval(()=>{
-  index=(index+1)%total;
-  goToSlide(index);
-},50000);
 
-// SWIPE MOBILE
-slider.addEventListener("touchstart",(e)=>{
-  startX = e.touches[0].clientX;
-});
+// NEXT
+function next(){
+  const total = document.querySelectorAll("#slider > div").length;
+  index = (index+1)%total;
+  resetProgress();
+}
 
-slider.addEventListener("touchend",(e)=>{
-  let endX = e.changedTouches[0].clientX;
 
-  if(startX - endX > 50){
-    index = (index+1)%total;
-  } else if(endX - startX > 50){
-    index = (index-1+total)%total;
-  }
+// PREV
+function prev(){
+  const total = document.querySelectorAll("#slider > div").length;
+  index = (index-1+total)%total;
+  resetProgress();
+}
 
-  goToSlide(index);
-});
 
-// VIDEO AUTO PAUSE
+// PROGRESS ANIMATION
+function startProgress(){
+  const bars = document.querySelectorAll("#progress div div");
+  let current = bars[index];
+
+  let width = 0;
+
+  timer = setInterval(()=>{
+    width+=2;
+    current.style.width = width + "%";
+
+    if(width>=100){
+      clearInterval(timer);
+      next();
+    }
+  }, duration/50);
+}
+
+
+// RESET
+function resetProgress(){
+  clearInterval(timer);
+
+  const fills = document.querySelectorAll("#progress div div");
+  fills.forEach(f=>f.style.width="0");
+
+  showSlide(index);
+  startProgress();
+}
+
+
+// VIDEO CONTROL
 function handleVideo(){
-  const videos = document.querySelectorAll("video");
+  const slides = document.querySelectorAll("#slider > div");
 
-  videos.forEach((v,i)=>{
-    if(i === index){
-      v.play();
-    } else {
-      v.pause();
+  slides.forEach((slide,i)=>{
+    const video = slide.querySelector("video");
+    if(video){
+      if(i === index){
+        video.play();
+      } else {
+        video.pause();
+      }
     }
   });
-}
-
-// INIT
-function initSlider(){
-  createDots();
-  updateDots();
-  handleVideo();
 }
