@@ -60,7 +60,7 @@
 
     <!-- FAMILY MART -->
     <div class="bg-white p-4 rounded-2xl shadow hover:scale-[1.03] hover:shadow-pink-300 transition">
-      <img src="sutt/blokm.jpg" class="w-full h-32 object-cover rounded-xl mb-3">
+      <img src="sutt/Trinity.jpeg" class="w-full h-32 object-cover rounded-xl mb-3">
 
       <p class="font-semibold text-gray-700">15.00 - 18.00</p>
 
@@ -78,7 +78,7 @@
 
       <img src="sutt/briq.jpg" class="w-full h-32 object-cover rounded-xl mb-3">
 
-      <p class="font-semibold text-gray-700">19.00 - 20.00</p>
+      <p class="font-semibold text-gray-700">20.00 - 21.00</p>
 
       <a href="https://maps.google.com/?q=BRIQ Bistro Jakarta"
         target="_blank"
@@ -89,7 +89,7 @@
       <p class="text-sm text-gray-500">Dinner romantis 🍽️💖</p>
 
       <!-- BUTTON -->
-      <a href="tiketcitylight.html"
+      <a href="reservasi.html"
         class="block mt-3 bg-pink-500 text-white text-center py-2 rounded-xl font-semibold hover:bg-pink-600 transition">
         🎟️ Lihat Reservasi
       </a>  
@@ -240,6 +240,15 @@ function closeKado(){
 }
 </script>
 
+<script>
+document.getElementById("btnSelesai").addEventListener("click", ()=>{
+  document.body.classList.add("opacity-0","scale-95");
+
+  setTimeout(()=>{
+    window.location.href = "Penutupan.html";
+  },300);
+});
+</script>
 
 </body>
 </html>
